@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop: Phân Tích Sợi Chỉ Vàng Chiến Lược (Case NextGen)</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Oswald & Noto Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a237e;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Oswald', sans-serif;
+        }
+        .workshop-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .step-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+        .step-card h2 {
+            color: #1a237e;
+            border-bottom: 3px solid #FF9800;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 0.95rem;
+            min-height: 120px;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #5C6BC0;
+            box-shadow: 0 0 0 3px rgba(92, 107, 192, 0.2);
+        }
+        .btn-primary {
+            background-color: #009688;
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #00796b;
+            transform: translateY(-2px);
+        }
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+        .analysis-column h3 {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            color: #1a237e;
+        }
+        .analysis-column h3 .fa-arrow-right {
+            margin: 0 1rem;
+            color: #cbd5e1;
+        }
+        .analysis-column .icon { color: #5C6BC0; }
+        .analysis-column label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #3730a3;
+        }
+        #final-strategy {
+            background-color: #e3f2fd;
+            border: 2px solid #5C6BC0;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin-top: 2rem;
+        }
+        #final-strategy table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background-color: white;
+        }
+        #final-strategy th, #final-strategy td {
+            border: 1px solid #e2e8f0;
+            padding: 1rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        #final-strategy th {
+            background-color: #f8fafc;
+        }
+        .btn-copy {
+            background-color: #5C6BC0;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-copy:hover {
+            background-color: #3f51b5;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="workshop-container">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-indigo-900">HOẠT ĐỘNG THẢO LUẬN NHÓM</h1>
+            <p class="text-2xl mt-2 text-gray-600">Phân Tích "Sợi Chỉ Vàng" Liên Kết Chiến Lược</p>
+        </div>
+
+        <!-- Step 1: Business Case -->
+        <div class="step-card">
+            <h2 class="text-3xl"><i class="fas fa-building mr-3 text-orange-500"></i>BỐI CẢNH: CÔNG TY NEXTGEN INNOVATIONS INC.</h2>
+            <p class="mb-4">Bạn và nhóm là Ban Lãnh đạo của <strong>NextGen Innovations Inc.</strong>. Hãy phân tích bối cảnh dưới đây để vạch ra chiến lược nhân sự phù hợp.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Left Column -->
+                <div class="space-y-6">
+                    <div class="bg-indigo-50 border border-indigo-200 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-indigo-800 mb-2"><i class="fas fa-bullseye mr-2"></i>Chiến Lược Kinh Doanh</h4>
+                        <p>"Trở thành công ty số 1 thị trường về giải pháp AI cho năng lượng tái tạo vào năm 2028. Chúng tôi chiến thắng bằng cách <strong>đổi mới nhanh hơn bất kỳ ai</strong>."</p>
+                    </div>
+                     <div class="bg-indigo-50 border border-indigo-200 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-indigo-800 mb-2"><i class="fas fa-users mr-2"></i>Văn Hóa Doanh Nghiệp</h4>
+                        <p>"Nhịp độ nhanh, hướng đến kết quả. Mọi người đều phải <strong>hành động như một người chủ</strong>."</p>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Data -->
+                <div class="bg-red-50 border border-red-200 p-6 rounded-lg">
+                     <h4 class="text-xl font-bold text-red-800 mb-4"><i class="fas fa-chart-bar mr-2"></i>Dữ Liệu & Số Liệu Nội Bộ (Năm qua)</h4>
+                     <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-user-minus text-red-500 text-2xl w-8"></i>
+                            <div>
+                                <h5 class="font-bold">Tỷ lệ nghỉ việc (Khối Công nghệ):</h5>
+                                <p class="text-2xl font-bold text-red-600">25% <span class="text-sm font-normal text-gray-600">(so với 12% toàn công ty)</span></p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-handshake-slash text-red-500 text-2xl w-8"></i>
+                            <div>
+                                <h5 class="font-bold">Tỷ lệ chấp nhận offer (Vị trí AI):</h5>
+                                <p class="text-2xl font-bold text-red-600">40% <span class="text-sm font-normal text-gray-600">(so với 75% các vị trí khác)</span></p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-comment-dots text-red-500 text-2xl w-8"></i>
+                            <div>
+                                <h5 class="font-bold">Thách thức cạnh tranh:</h5>
+                                <p class="italic text-red-700">"Mất nhân tài AI vào tay các tập đoàn công nghệ lớn có đãi ngộ vượt trội."</p>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Step 2: Analysis Activity -->
+        <div class="step-card">
+            <h2 class="text-3xl"><i class="fas fa-sitemap mr-3 text-orange-500"></i>HOẠT ĐỘNG: VẼ "SỢI CHỈ VÀNG"</h2>
+            <p class="mb-6">Nhiệm vụ của nhóm là phân tích và làm rõ mối liên kết từ mục tiêu kinh doanh đến các hành động nhân sự cần thiết. Hãy cùng nhau thảo luận và điền vào các ô dưới đây.</p>
+            
+            <!-- Analysis Row 1 -->
+            <div class="analysis-grid">
+                <!-- Column 1 -->
+                <div class="analysis-column">
+                    <h3><i class="fas fa-bullseye icon"></i>Mục tiêu Kinh doanh then chốt<i class="fas fa-arrow-right"></i></h3>
+                    <textarea id="biz-goal-1" rows="5">Đẩy nhanh tốc độ R&D và ra mắt sản phẩm AI đột phá, đi trước đối thủ.</textarea>
+                </div>
+                <!-- Column 2 -->
+                <div class="analysis-column">
+                    <h3><i class="fas fa-brain icon"></i>Năng lực & Hành vi Yêu cầu<i class="fas fa-arrow-right"></i></h3>
+                    <label for="comp-1">Cần những NĂNG LỰC gì?</label>
+                    <textarea id="comp-1" rows="3">Năng lực Nghiên cứu & Phát triển AI, Quản lý dự án linh hoạt (Agile), Giải quyết vấn đề phức tạp.</textarea>
+                    <label for="behav-1">Cần những HÀNH VI gì?</label>
+                    <textarea id="behav-1" rows="3">Tư duy đổi mới, Chấp nhận rủi ro thông minh, Hợp tác đa chức năng, Tinh thần làm chủ.</textarea>
+                </div>
+                <!-- Column 3 -->
+                <div class="analysis-column">
+                    <h3><i class="fas fa-users-gear icon"></i>Hành động Chiến lược của Nhân sự</h3>
+                    <label for="hr-attract-1">Thu hút (Attract):</label>
+                    <textarea id="hr-attract-1" rows="2">Xây dựng thương hiệu tuyển dụng công nghệ mạnh. Thiết kế lại gói đãi ngộ (Total Rewards) cạnh tranh ở top đầu thị trường cho nhân tài AI.</textarea>
+                    <label for="hr-develop-1">Phát triển (Develop):</label>
+                    <textarea id="hr-develop-1" rows="2">Tổ chức các cuộc thi Hackathon nội bộ. Gửi nhân sự chủ chốt đi các hội nghị AI quốc tế.</textarea>
+                    <label for="hr-engage-1">Gắn kết & Giữ chân (Engage & Retain):</label>
+                    <textarea id="hr-engage-1" rows="2">Xây dựng chương trình thưởng cổ phiếu (LTI) cho nhân viên có đóng góp đột phá. Vinh danh & thưởng nóng cho các sáng kiến giá trị.</textarea>
+                </div>
+            </div>
+
+            <!-- Analysis Row 2 -->
+            <div class="analysis-grid">
+                <!-- Column 1 -->
+                <div class="analysis-column">
+                    <h3><i class="fas fa-bullseye icon"></i>Mục tiêu Kinh doanh then chốt<i class="fas fa-arrow-right"></i></h3>
+                    <textarea id="biz-goal-2" rows="5"></textarea>
+                </div>
+                <!-- Column 2 -->
+                <div class="analysis-column">
+                    <h3><i class="fas fa-brain icon"></i>Năng lực & Hành vi Yêu cầu<i class="fas fa-arrow-right"></i></h3>
+                    <label for="comp-2">Cần những NĂNG LỰC gì?</label>
+                    <textarea id="comp-2" rows="3"></textarea>
+                    <label for="behav-2">Cần những HÀNH VI gì?</label>
+                    <textarea id="behav-2" rows="3"></textarea>
+                </div>
+                <!-- Column 3 -->
+                <div class="analysis-column">
+                    <h3><i class="fas fa-users-gear icon"></i>Hành động Chiến lược của Nhân sự</h3>
+                    <label for="hr-attract-2">Thu hút (Attract):</label>
+                    <textarea id="hr-attract-2" rows="2"></textarea>
+                    <label for="hr-develop-2">Phát triển (Develop):</label>
+                    <textarea id="hr-develop-2" rows="2"></textarea>
+                    <label for="hr-engage-2">Gắn kết & Giữ chân (Engage & Retain):</label>
+                    <textarea id="hr-engage-2" rows="2"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Generate Button -->
+        <div class="text-center my-12">
+            <button id="generate-btn" class="btn-primary">
+                <i class="fas fa-sitemap mr-3"></i>Tổng hợp Bản đồ Chiến lược
+            </button>
+        </div>
+
+        <!-- Final Strategy Output -->
+        <div id="final-strategy" class="hidden">
+            <div class="flex justify-between items-start mb-6">
+                 <div>
+                    <h2 class="text-3xl text-indigo-900">Bản Đồ Liên Kết Chiến Lược Nhân Sự</h2>
+                    <h3 class="text-2xl text-gray-600">Công ty: NextGen Innovations Inc.</h3>
+                 </div>
+                 <button id="copy-btn" class="btn-copy"><i class="fas fa-copy mr-2"></i>Sao chép Kết quả</button>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mục tiêu Kinh doanh</th>
+                        <th>Năng lực & Hành vi Yêu cầu</th>
+                        <th>Hành động Chiến lược của Nhân sự</th>
+                    </tr>
+                </thead>
+                <tbody id="strategy-tbody">
+                    <!-- Content will be generated here by JS -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Element Selection ---
+    const generateBtn = document.getElementById('generate-btn');
+    const finalStrategyDiv = document.getElementById('final-strategy');
+    const strategyTbody = document.getElementById('strategy-tbody');
+    const copyBtn = document.getElementById('copy-btn');
+    const numRows = 2; // Number of analysis rows in the form
+
+    // --- Event Listeners ---
+    generateBtn.addEventListener('click', generateStrategy);
+    copyBtn.addEventListener('click', copyToClipboard);
+
+    // --- Functions ---
+    function generateStrategy() {
+        strategyTbody.innerHTML = ''; // Clear previous results
+        
+        for (let i = 1; i <= numRows; i++) {
+            const bizGoal = document.getElementById(`biz-goal-${i}`).value.trim().replace(/\n/g, '<br>');
+            const comp = document.getElementById(`comp-${i}`).value.trim().replace(/\n/g, '<br>');
+            const behav = document.getElementById(`behav-${i}`).value.trim().replace(/\n/g, '<br>');
+            const hrAttract = document.getElementById(`hr-attract-${i}`).value.trim().replace(/\n/g, '<br>');
+            const hrDevelop = document.getElementById(`hr-develop-${i}`).value.trim().replace(/\n/g, '<br>');
+            const hrEngage = document.getElementById(`hr-engage-${i}`).value.trim().replace(/\n/g, '<br>');
+
+            // Only add row if the business goal is filled
+            if(bizGoal) {
+                const newRow = `
+                    <tr>
+                        <td>${bizGoal}</td>
+                        <td>
+                            <strong>Năng lực:</strong><br>${comp}<br><br>
+                            <strong>Hành vi:</strong><br>${behav}
+                        </td>
+                        <td>
+                            <strong>Thu hút:</strong><br>${hrAttract}<br><br>
+                            <strong>Phát triển:</strong><br>${hrDevelop}<br><br>
+                            <strong>Gắn kết & Giữ chân:</strong><br>${hrEngage}
+                        </td>
+                    </tr>
+                `;
+                strategyTbody.innerHTML += newRow;
+            }
+        }
+        
+        finalStrategyDiv.classList.remove('hidden');
+        finalStrategyDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function copyToClipboard() {
+        let textToCopy = "Bản Đồ Liên Kết Chiến Lược Nhân Sự - NextGen Innovations Inc.\n\n";
+
+        const tableRows = strategyTbody.querySelectorAll('tr');
+        tableRows.forEach((row, index) => {
+            const cells = row.querySelectorAll('td');
+            const bizGoal = cells[0].innerText;
+            const compBehav = cells[1].innerText;
+            const hrActions = cells[2].innerText;
+
+            textToCopy += `--- MỤC TIÊU ${index + 1} ---\n`;
+            textToCopy += `Mục tiêu Kinh doanh:\n${bizGoal}\n\n`;
+            textToCopy += `Năng lực & Hành vi Yêu cầu:\n${compBehav}\n\n`;
+            textToCopy += `Hành động Chiến lược của Nhân sự:\n${hrActions}\n\n`;
+        });
+
+        // Use fallback method directly for better compatibility
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy.trim();
+        
+        // Make it invisible but accessible
+        textArea.style.position = "fixed";
+        textArea.style.top = 0;
+        textArea.style.left = 0;
+        textArea.style.width = '1px';
+        textArea.style.height = '1px';
+        textArea.style.padding = 0;
+        textArea.style.border = 'none';
+        textArea.style.outline = 'none';
+        textArea.style.boxShadow = 'none';
+        textArea.style.background = 'transparent';
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if(successful){
+                copyBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Đã sao chép!';
+            } else {
+                alert('Không thể sao chép nội dung.');
+            }
+        } catch (err) {
+            console.error('Fallback copy failed', err);
+            alert('Không thể sao chép nội dung.');
+        }
+
+        document.body.removeChild(textArea);
+
+        setTimeout(() => {
+            copyBtn.innerHTML = '<i class="fas fa-copy mr-2"></i>Sao chép Kết quả';
+        }, 2000);
+    }
+});
+</script>
+
+</body>
+</html>
+
